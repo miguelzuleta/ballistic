@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spreadsheet Links</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  li {
+    width: 100%;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1a73e8;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 18px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+
+  a:active {
+    background-color: #1558b3;
+    transform: scale(0.98);
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      background-color: #1669d6;
+    }
+  }
+</style>
+</head> 
+<body>
+	<script src="https://miguelzuleta.com/append/index.js"></script>
+  <script>
+		console.clear();
+
+		let csv = "https://docs.google.com/spreadsheets/d/1fWf_0LSgIg1KXwzhDlPUaTFWECa4VtsD0ggMrSHH9eA/export?format=csv";
+		
+		fetch(csv).then(data => data.text()).then(data => {
+			let linkData = data.split(/\r?\n/);
+
+			let linkList = linkData.map(str => {
+				let strData = str.split(',');
+				return `<li><a href='${strData[1]}'>${strData[0]}</a></li>`;
+			}).join('');
+
+			append('body', `<ul>${linkList}</ul>`);
+		});
+  </script>
+</body>
+</html>
