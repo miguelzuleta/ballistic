@@ -62,10 +62,8 @@
 </style>
 </head> 
 <body>
-	<script src="https://miguelzuleta.com/append/index.js"></script>
+  <script src="https://miguelzuleta.com/append/index.js"></script>
   <script>
-		console.clear();
-
 		let csv = "https://docs.google.com/spreadsheets/d/1fWf_0LSgIg1KXwzhDlPUaTFWECa4VtsD0ggMrSHH9eA/export?format=csv";
 		
 		fetch(csv).then(data => data.text()).then(data => {
